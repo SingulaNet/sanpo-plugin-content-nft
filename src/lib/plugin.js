@@ -214,6 +214,40 @@ class PluginContentNft extends EventEmitter2 {
     });
   }
 
+  getTransactionReceipt(transactionHash) {
+    return new Promise((resolve) => {
+      this.web3.eth.getTransactionReceipt(transactionHash, (error, receipt) => {
+        if (error) {
+          resolve(false);
+        } else {
+          if (receipt) {
+            console.log('Transaction is confirmed', receipt);
+            resolve(receipt);
+          } else {
+            console.log('Transaction is not yet confirmed');
+            resolve(false);
+          }
+        }
+      });
+    });
+  }
+
+  getPastEvents(eventName, fromBlock) {
+    return new Promise(resolve => {
+      this.DigitalContentContract.getPastEvents(eventName, {
+        fromBlock,
+        toBlock: 'latest',
+      }, (error, events) => {
+        if (!error) {
+         resolve(events);
+        } else {
+          console.error(error);
+          resolve();
+        }
+      });
+    });
+  }
+
   /**
    * Send transaction
    * @param {string} from
