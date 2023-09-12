@@ -125,10 +125,10 @@ class PluginContentNft extends EventEmitter2 {
 
   /**
    * Execute design transaction
-   * @param {string} address 
-   * @param {string} privateKey 
-   * @param {object} params 
-   * @returns 
+   * @param {string} address
+   * @param {string} privateKey
+   * @param {object} params
+   * @returns
    */
   design(address, privateKey, opts) {
     const txData = this.contract.methods.design(
@@ -152,10 +152,10 @@ class PluginContentNft extends EventEmitter2 {
 
   /**
    * Execute mint transaction
-   * @param {string} address 
-   * @param {string} privateKey 
-   * @param {object} params 
-   * @returns 
+   * @param {string} address
+   * @param {string} privateKey
+   * @param {object} params
+   * @returns
    */
   mint(address, privateKey, opts) {
     const txData = this.contract.methods.mint(
@@ -170,10 +170,10 @@ class PluginContentNft extends EventEmitter2 {
 
   /**
    * Execute transfer transaction
-   * @param {string} address 
-   * @param {string} privateKey 
-   * @param {object} params 
-   * @returns 
+   * @param {string} address
+   * @param {string} privateKey
+   * @param {object} params
+   * @returns
    */
   transfer(address, privateKey, opts) {
     const txData = this.contract.methods.transfer(
@@ -185,10 +185,10 @@ class PluginContentNft extends EventEmitter2 {
 
   /**
    * Execute transferFrom transaction
-   * @param {string} address 
-   * @param {string} privateKey 
-   * @param {object} params 
-   * @returns 
+   * @param {string} address
+   * @param {string} privateKey
+   * @param {object} params
+   * @returns
    */
   transferFrom(address, privateKey, opts) {
     const txData = this.contract.methods.transferFrom(
@@ -199,12 +199,27 @@ class PluginContentNft extends EventEmitter2 {
     return this._sendSignedTransaction(address, privateKey, txData);
   }
 
+  async sendSignedTransaction(serializedTx) {
+    return new Promise((resolve, reject) => {
+      this.web3.eth.sendSignedTransaction(serializedTx)
+      .on("confirmation", (confirmationNumber, receipt) => {
+        if (confirmationNumber === 1) {
+          resolve(receipt.transactionHash);
+        }
+      })
+      .on("error", (error) =>  {
+        console.error;
+        reject(error);
+      })
+    });
+  }
+
   /**
    * Send transaction
-   * @param {string} from 
-   * @param {string} privateKey 
-   * @param {object} txData 
-   * @returns 
+   * @param {string} from
+   * @param {string} privateKey
+   * @param {object} txData
+   * @returns
    */
   async _sendSignedTransaction(from, privateKey, txData) {
     const nonce = await this.web3.eth.getTransactionCount(from, "pending");
@@ -235,9 +250,9 @@ class PluginContentNft extends EventEmitter2 {
   }
 
   /**
- * 
- * @param {number} _objectId 
- * @returns 
+ *
+ * @param {number} _objectId
+ * @returns
  */
   objectIndexOf(_objectId) {
     return new Promise(resolve => {
