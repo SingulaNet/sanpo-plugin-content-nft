@@ -234,7 +234,7 @@ class PluginContentNft extends EventEmitter2 {
 
   getPastEvents(eventName, fromBlock) {
     return new Promise(resolve => {
-      this.DigitalContentContract.getPastEvents(eventName, {
+      this.contract.getPastEvents(eventName, {
         fromBlock,
         toBlock: 'latest',
       }, (error, events) => {
