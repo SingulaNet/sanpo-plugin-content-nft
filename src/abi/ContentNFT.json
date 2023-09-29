@@ -119,9 +119,9 @@
       },
       {
         "indexed": false,
-        "internalType": "uint8",
+        "internalType": "string",
         "name": "contractVersion",
-        "type": "uint8"
+        "type": "string"
       }
     ],
     "name": "DesignLog",
@@ -477,9 +477,9 @@
         "type": "bool"
       },
       {
-        "internalType": "uint8",
+        "internalType": "string",
         "name": "_contractVersion",
-        "type": "uint8"
+        "type": "string"
       }
     ],
     "name": "design",
@@ -595,7 +595,17 @@
       },
       {
         "internalType": "string",
+        "name": "contentType",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "mediaId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "thumbnailId",
         "type": "string"
       },
       {
@@ -614,14 +624,34 @@
         "type": "string[]"
       },
       {
+        "internalType": "bool",
+        "name": "drm",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "personaInformation",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "secondarySales",
+        "type": "bool"
+      },
+      {
         "internalType": "uint256[]",
         "name": "royalty",
         "type": "uint256[]"
       },
       {
         "internalType": "bool",
-        "name": "secondarySales",
+        "name": "deleted",
         "type": "bool"
+      },
+      {
+        "internalType": "string",
+        "name": "contractVersion",
+        "type": "string"
       },
       {
         "internalType": "address",
