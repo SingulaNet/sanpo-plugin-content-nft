@@ -182,9 +182,9 @@
       },
       {
         "indexed": false,
-        "internalType": "uint8",
+        "internalType": "string",
         "name": "contractVersion",
-        "type": "uint8"
+        "type": "string"
       },
       {
         "indexed": false,
@@ -550,9 +550,9 @@
         "type": "string[]"
       },
       {
-        "internalType": "uint8",
+        "internalType": "string",
         "name": "contractVersion",
-        "type": "uint8"
+        "type": "string"
       },
       {
         "internalType": "address",
@@ -781,9 +781,9 @@
         "type": "string[]"
       },
       {
-        "internalType": "uint8",
+        "internalType": "string",
         "name": "_contractVersion",
-        "type": "uint8"
+        "type": "string"
       }
     ],
     "name": "mint",
